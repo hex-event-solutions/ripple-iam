@@ -1,25 +1,15 @@
+# frozen_string_literal: true
+
 class UserController < ApplicationController
-  def index
+  def index; end
 
-  end
+  def show; end
 
-  def show
+  def create; end
 
-  end
+  def update; end
 
-  def create
+  def add_to_group; end
 
-  end
-
-  def update
-
-  end
-
-  def add_to_group
-
-  end
-
-  def remove_from_group
-
-  end
+  def remove_from_group; end
 end
