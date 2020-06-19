@@ -26,6 +26,17 @@ services:
       - RAILS_ENV=development
       - RAILS_LOG_TO_STDOUT=present
       - SECRET_KEY_BASE=b367701b74c339b3baa5d48ae00429eb40a9f2715f57971883d234ea3654a1eb71ca5a266017eef00847f56650b3d07bb53a7fd1b2ca79742dd47ceae840711b
+      - KEYCLOAK_BASE_URL=http://sso:8080
+      - KEYCLOAK_REALM=ripple
+      - KEYCLOAK_CLIENT_ID=ripple-iam-service
+      - KEYCLOAK_CLIENT_SECRET=4572b16c-71ff-4992-8b27-cefd8a67fda8
+      - AIRBRAKE_PROJECT_ID=277593
+      - AIRBRAKE_PROJECT_KEY=03b80add684a295669903907006fd86a
+      - RABBIT_HOSTNAME=rabbit
+      - RABBIT_PORT=5672
+      - RABBIT_USER=ripple-iam
+      - RABBIT_PASSWORD=ripple-iam
+      - RABBIT_EXCHANGE=ripple
     restart: always
   sso:
     image: jboss/keycloak:10.0.2
@@ -43,6 +54,14 @@ services:
       - "8080:8080"
     depends_on:
       - db
+  rabbit:
+    image: rabbitmq:3.8.4-management-alpine
+    volumes:
+      - bunny_data:/var/lib/rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
 volumes:
   postgres_data:
   sso_data:
+  bunny_data:
