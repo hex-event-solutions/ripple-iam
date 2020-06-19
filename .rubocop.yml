@@ -35,6 +35,7 @@ Style/Documentation:
 Metrics/MethodLength:
   Exclude:
     - db/migrate/*
+    - lib/initial_roles.rb
 
 Metrics/BlockLength:
   Exclude:
