@@ -27,7 +27,7 @@ class GroupController < ApplicationController
   def allowed_groups
     trimmed_groups = []
     request.env['keycloak.user_groups'].each do |grp|
-      trimmed_groups << grp.split('.')[0]
+      trimmed_groups << grp[%r{^/([a-z0-9-]+)[./]?}, 1]
     end
     trimmed_groups.uniq
   end

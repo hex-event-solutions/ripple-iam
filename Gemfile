@@ -25,7 +25,7 @@ gem 'puma', '~> 4.1'
 gem 'bootsnap', '>= 1.4.2', require: false
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-# gem 'rack-cors'
+gem 'rack-cors'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -46,5 +46,5 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 gem 'airbrake', '~> 10.0.5'
 gem 'bunny', '~> 2.15.0'
-gem 'ripple_keycloak', '~> 0.3.0'
-gem 'ripple_token', '~> 0.1.0'
+gem 'ripple_keycloak', '~> 0.5.0'
+gem 'ripple_token', '~> 0.4.0'

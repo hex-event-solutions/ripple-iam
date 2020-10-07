@@ -5,7 +5,7 @@ RippleToken::Client.configure do |c|
   c.realm = ENV.fetch('KEYCLOAK_REALM')
   c.public_key_ttl = ENV.fetch('KEYCLOAK_PUBLIC_KEY_TTL', 86_400)
   c.public_paths = {
-    get: [],
+    'GET' => [%r{/probe}],
     post: [],
     put: [],
     patch: [],

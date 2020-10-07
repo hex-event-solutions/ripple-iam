@@ -20,14 +20,14 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: rippleiam
-  password: password
-  host: db
-  port: 5432
+  username: <%= ENV.fetch("POSTGRES_USER") %>
+  password: <%= ENV.fetch("POSTGRES_PASSWORD") %>
+  host: <%= ENV.fetch("POSTGRES_HOST") %>
+  port: <%= ENV.fetch("POSTGRES_PORT") %>
 
 development:
   <<: *default
-  database: ripple_iam_development
+  database: ripple-iam_development
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -61,7 +61,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: ripple_iam_test
+  database: ripple-iam_test
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -84,6 +84,4 @@ test:
 #
 production:
   <<: *default
-  database: ripple_iam_production
-  username: ripple_iam
-  password: <%= ENV['RIPPLE_IAM_DATABASE_PASSWORD'] %>
+  database: ripple-iam_production

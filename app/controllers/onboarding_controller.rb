@@ -15,13 +15,14 @@ class OnboardingController < ApplicationController
     create_groups(allowed_params[:company_id])
     create_initial_user(allowed_params.except(:company_id))
 
-    #TODO: does this work?
     initial_user = find_and_wait do
       RippleKeycloak::User.find_by(field: 'username', value: allowed_params[:email])
     end
 
     assign_initial_user_roles(initial_user['id'], InitialRoles.admin)
     assign_user_to_admin_group(initial_user['id'], allowed_params[:company_id])
+    # pp initial_user
+    render json: { id: initial_user['id'] }
   end
 
   private
@@ -87,7 +88,7 @@ class OnboardingController < ApplicationController
 
   def find_and_wait(&block)
     found = nil
-    while initial_user.nil?
+    while found.nil?
       begin
         found = yield
       rescue RippleKeycloak::NotFoundError => _e
